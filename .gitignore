@@ -1,0 +1,8 @@
+*.xlsx
+*.xls
+*.csv
+*.sql
+*.sql.gz
+*.tgz
+.idea/
+.vscode/

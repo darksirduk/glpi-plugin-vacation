@@ -1,0 +1,91 @@
+/* ---------- Общие ---------- */
+.vac-page { padding: 8px 0; }
+.vac-sw {
+    display: inline-block; width: 14px; height: 14px;
+    border: 1px solid rgba(0, 0, 0, .2); border-radius: 2px;
+    vertical-align: middle; margin-right: 6px;
+}
+.vac-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 10px 0; font-size: .9em; }
+.vac-preview { color: #555; }
+
+/* ---------- Типы дней ---------- */
+.vac-weekend { background-color: #eceff3; }
+.vac-holiday { background-color: #f6b9b9; color: #9b0000; font-weight: 600; }
+.vac-dayoff  { background-color: #fbdede; color: #9b0000; }
+.vac-workday { background: repeating-linear-gradient(45deg, #ffffff, #ffffff 3px, #d6e2f5 3px, #d6e2f5 6px); }
+.vac-short   { background-color: #fff1bd; }
+
+/* ---------- Статусы отпусков ---------- */
+.vac-st1 { background: #74a9ec !important; }
+.vac-st2 { background: #43a047 !important; }
+.vac-st3 { background: repeating-linear-gradient(45deg, #d0d0d0, #d0d0d0 3px, #f2f2f2 3px, #f2f2f2 6px) !important; }
+/* праздник внутри отпуска (не входит в число дней) — красная полоса снизу */
+.vac-grid td.vac-st1.vac-holiday,
+.vac-grid td.vac-st2.vac-holiday { box-shadow: inset 0 -5px 0 #d32f2f; }
+.vac-grid td.vac-st1.vac-weekend,
+.vac-grid td.vac-st2.vac-weekend,
+.vac-grid td.vac-st1.vac-dayoff,
+.vac-grid td.vac-st2.vac-dayoff { opacity: .75; }
+
+/* ---------- Фильтр и действия ---------- */
+.vac-filter, .vac-actions, .vac-dayform {
+    display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px; margin-bottom: 12px;
+}
+.vac-filter label, .vac-dayform label { display: flex; flex-direction: column; gap: 2px; margin: 0; }
+.vac-filter label.form-check { flex-direction: row; align-items: center; gap: 6px; padding-bottom: 8px; }
+.vac-json { flex-basis: 100%; }
+.vac-json summary { cursor: pointer; color: #555; }
+
+/* ---------- Сводный график ---------- */
+.vac-grid-wrap { overflow: auto; max-width: 100%; max-height: 75vh; border: 1px solid #d9d9d9; }
+table.vac-grid { border-collapse: separate; border-spacing: 0; font-size: 11px; }
+table.vac-grid th, table.vac-grid td {
+    border-right: 1px solid #e3e3e3; border-bottom: 1px solid #e3e3e3;
+    padding: 0; text-align: center; white-space: nowrap;
+}
+table.vac-grid thead th { position: sticky; top: 0; z-index: 3; background-color: #f7f7f7; }
+table.vac-grid thead tr:nth-child(2) th { top: 22px; }
+table.vac-grid thead th.vac-day.vac-weekend { background-color: #e2e6eb; }
+table.vac-grid thead th.vac-day.vac-holiday { background-color: #f6b9b9; }
+table.vac-grid thead th.vac-day.vac-dayoff  { background-color: #fbdede; }
+table.vac-grid thead th.vac-day.vac-short   { background-color: #fff1bd; }
+table.vac-grid .vac-day { width: 20px; min-width: 20px; max-width: 20px; height: 22px; }
+table.vac-grid .vac-mhead { height: 22px; font-weight: 600; }
+table.vac-grid .vac-mstart { border-left: 2px solid #9aa4b1; }
+table.vac-grid .vac-name {
+    position: sticky; left: 0; z-index: 2; background-color: #fff;
+    box-sizing: border-box; width: 230px; min-width: 230px; max-width: 230px;
+    overflow: hidden; text-overflow: ellipsis; text-align: left; padding: 0 6px;
+}
+table.vac-grid .vac-total {
+    position: sticky; left: 230px; z-index: 2; background-color: #fff;
+    box-sizing: border-box; width: 44px; min-width: 44px; font-weight: 600;
+    border-right: 2px solid #9aa4b1;
+}
+table.vac-grid thead .vac-name, table.vac-grid thead .vac-total { z-index: 4; background-color: #f7f7f7; }
+table.vac-grid tbody tr:hover td.vac-name, table.vac-grid tbody tr:hover td.vac-total { background-color: #eef4ff; }
+table.vac-grid td[data-v], table.vac-grid td[data-u] { cursor: pointer; }
+table.vac-grid td.vac-free:hover { outline: 2px solid #74a9ec; outline-offset: -2px; }
+table.vac-grid tfoot td, table.vac-grid tfoot th {
+    position: sticky; bottom: 0; background-color: #f7f7f7; font-weight: 600; z-index: 1;
+}
+table.vac-grid tfoot .vac-name, table.vac-grid tfoot .vac-total { z-index: 4; }
+table.vac-grid tfoot td.vac-over { background-color: #e53935; color: #fff; }
+
+/* ---------- Производственный календарь ---------- */
+.vac-yearnav { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.vac-yearnav h2 { margin: 0; }
+.vac-stats { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 10px 0; }
+.vac-months { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+.vac-month-title { font-weight: 600; margin-bottom: 4px; }
+.vac-month-title small { font-weight: normal; color: #777; margin-left: 6px; }
+table.vac-cal { border-collapse: collapse; width: 100%; }
+table.vac-cal th { font-size: .8em; color: #777; text-align: center; font-weight: normal; }
+table.vac-cal td {
+    text-align: center; height: 28px; width: 14.28%;
+    border: 1px solid #eee; cursor: pointer;
+}
+table.vac-cal td:empty { border: none; cursor: default; }
+table.vac-cal td[data-date]:hover { outline: 2px solid #74a9ec; outline-offset: -2px; }
+.vac-exceptions { max-width: 900px; }
+.vac-exceptions td:first-child { width: 30px; }
